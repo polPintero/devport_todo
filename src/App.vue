@@ -1,15 +1,20 @@
 <template>
-devport
+  <LoginForm />
 </template>
 
-<script setup>
+<script>
+import LoginForm from './components/organism/LoginForm.vue'
+
+export default {
+  components: {
+    LoginForm
+  }
+}
 </script>
 
 <style lang="scss">
-.qqw {
-
-  &__sss{
-    width: 222px;
-  }
+html {
+  background: #212121;
+  color: #ffff;
 }
 </style>

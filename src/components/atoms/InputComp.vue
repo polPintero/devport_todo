@@ -37,6 +37,7 @@ export default {
     user-select: none;
     pointer-events: none;
     color: #b0b0b0;
+    text-transform: capitalize;
   }
 
   input {

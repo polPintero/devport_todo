@@ -10,8 +10,8 @@ export default {
   components: { InputComp },
   props: {
     label: {
-        type: String,
-        default: ''
+      type: String,
+      default: ''
     }
   }
 }
