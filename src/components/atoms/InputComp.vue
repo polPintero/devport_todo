@@ -8,15 +8,31 @@
 <script>
 export default {
   name: 'InputComp',
+  emits: ['update:modelValue'],
   props: {
     label: {
       type: String,
       default: ''
+    },
+    modelValue: {
+      type: [String, Number],
+      default: ''
+    },
+    modifyValue: {
+      type: Function,
+      default: (e) => e
     }
   },
-  data() {
+  data () {
     return {
-      value: ''
+      value: this.modelValue
+    }
+  },
+  watch: {
+    value (newValue, oldValue) {
+      const v = this.modifyValue(newValue, oldValue)
+      this.value = v
+      this.$emit('update:modelValue', v)
     }
   }
 }
@@ -57,7 +73,7 @@ export default {
       box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 3px 3px 4px #0e0e0e,
         inset -3px -3px 4px #5f5e5e;
 
-      & + .label {
+      &+.label {
         transform: translate(-150%, -50%);
       }
     }
