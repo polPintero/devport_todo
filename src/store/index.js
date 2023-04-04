@@ -5,6 +5,7 @@ export default createStore({
   state: {
     listUsers: [],
     listUsersById:{},
+    listToDoByUserId: {}, 
     user: null,
     todos:[]
   },
@@ -24,6 +25,11 @@ export default createStore({
     },
     setToDos(state, payload){
       state.todos = payload
+      payload.forEach(todo => {
+        if (!state.listToDoByUserId[todo.userId]) state.listToDoByUserId[todo.userId] = []
+        state.listToDoByUserId[todo.userId].push(todo)
+        
+      });
     }
   },
   actions: {
