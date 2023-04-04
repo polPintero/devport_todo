@@ -13,6 +13,7 @@ const router = createRouter({
     {
       path: routeList.todo,
       name: 'todo',
+      component: () => import('@/views/ToDoPage.vue')
 
     }
   ]
