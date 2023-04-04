@@ -21,6 +21,6 @@ class DevPortAPI extends API {
   }
 }
 
-export default new DevPortAPI('https://jsonplaceholder.typicode.com/')
+export default new DevPortAPI('https://jsonplaceholder.typicode.com')
 
 

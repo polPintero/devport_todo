@@ -3,18 +3,21 @@ import api from '@/api.js'
 
 export default createStore({
   state: {
-
+    listUsers: []
   },
   getters: {
 
   },
   mutations: {
-
+    setListUsers(state, payload){
+      state.listUsers = payload
+    }
   },
   actions: {
-    async getUsers(){
+    async getUsers({commit}){
       const response = await api.getUsers()
-      console.log(response)
+      commit('setListUsers', response)
+      return response
     }
 
   },
