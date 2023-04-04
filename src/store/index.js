@@ -12,6 +12,10 @@ export default createStore({
 
   },
   actions: {
+    async getUsers(){
+      const response = await api.getUsers()
+      console.log(response)
+    }
 
   },
 })
