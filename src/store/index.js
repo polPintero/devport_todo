@@ -3,7 +3,8 @@ import api from '@/api.js'
 
 export default createStore({
   state: {
-    listUsers: []
+    listUsers: [],
+    user: null
   },
   getters: {
 
@@ -11,6 +12,9 @@ export default createStore({
   mutations: {
     setListUsers(state, payload){
       state.listUsers = payload
+    },
+    setUser(state, payload){
+      state.user = payload
     }
   },
   actions: {
