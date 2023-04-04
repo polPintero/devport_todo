@@ -4,6 +4,7 @@ import api from '@/api.js'
 export default createStore({
   state: {
     listUsers: [],
+    listUsersById:{},
     user: null,
     todos:[]
   },
@@ -11,8 +12,12 @@ export default createStore({
 
   },
   mutations: {
-    setListUsers(state, payload){
+    setListUsers(state, payload = []){
       state.listUsers = payload
+      payload.forEach(user => {
+        state.listUsersById[user.id] = user 
+      });
+      
     },
     setUser(state, payload){
       state.user = payload
