@@ -19,6 +19,12 @@ class DevPortAPI extends API {
     const response = await this.sendRequest(url)
     return response
   }
+
+  async getToDos(){
+    let url = this.domain + '/todos'
+    const response = await this.sendRequest(url)
+    return response
+  }
 }
 
 export default new DevPortAPI('https://jsonplaceholder.typicode.com')

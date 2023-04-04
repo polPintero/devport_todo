@@ -55,6 +55,7 @@ export default {
 
 <style lang="scss">
 .user-card--wrap {
+    max-width: 400px;
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
     margin: 30px auto;
     border-radius: 10px;
