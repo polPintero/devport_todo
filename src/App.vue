@@ -1,14 +1,11 @@
 <template>
-  <LoginForm />
+  <RouterView />
 </template>
 
 <script>
-import LoginForm from './components/organism/LoginForm.vue'
 
 export default {
-  components: {
-    LoginForm
-  }
+  name: 'App'
 }
 </script>
 
@@ -17,7 +14,7 @@ html {
   background: #212121;
   color: #ffff;
   font-size: 18px;
-  font-family: Montserrat,sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 
 body {
