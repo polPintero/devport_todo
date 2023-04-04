@@ -27,7 +27,7 @@ export default {
   methods: {
     modifyValue (newValue, oldValue) {
       if (newValue === '') return newValue
-      const pattern = /[0-9 \s-()]$/gi
+      const pattern = /[0-9 \s-()x]$/gi
       const isMatch = pattern.test(newValue)
       return isMatch ? newValue : oldValue
     }

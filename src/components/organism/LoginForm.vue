@@ -1,9 +1,9 @@
 <template>
   <form class="login-form" @submit.prevent>
     <h4 class="login-form__title">Login</h4>
-    <InputComp label="username" />
-    <InputNumber label="phone" />
-    <ButtonComp label="login" />
+    <InputComp label="username" v-model="nameUser" />
+    <InputNumber label="phone" v-model="phone" />
+    <ButtonComp label="login" @click="$emit('autorizaition')" />
   </form>
 </template>
 
@@ -18,7 +18,33 @@ export default {
     InputComp,
     InputNumber,
     ButtonComp
-  }
+  },
+  emits: ['update:phoneNumber', 'update:userName'],
+  props: {
+    phoneNumber: {
+      type: [String, Number],
+      default: ''
+    },
+    userName: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    return {
+      nameUser: this.userName,
+      phone: this.phoneNumber,
+    }
+  },
+  watch: {
+    nameUser (e) {
+      this.$emit('update:userName', e)
+    },
+    phone (e) {
+      this.$emit('update:phoneNumber', e)
+    }
+  },
+
 }
 </script>
 
@@ -28,8 +54,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  padding: 20px;
+  gap: calc(var(--gap) * 3);
+  padding: calc(var(--gap) * 3);
 
   &__title {
     text-align: center;
