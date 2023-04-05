@@ -42,6 +42,7 @@ export default {
 .input-comp {
   position: relative;
   overflow: hidden;
+  height: max-content;
 
   .label {
     position: absolute;
