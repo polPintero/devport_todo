@@ -167,6 +167,11 @@ export default {
             }
 
             &:hover {
+                background-image: linear-gradient(90deg, rgba(37, 221, 40, 1) 6%, rgba(49, 140, 213, 1) 68%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+
                 .todos__item__title--icon {
                     display: inline-block;
                 }
@@ -221,4 +226,5 @@ export default {
             left: unset;
         }
     }
-}</style>
+}
+</style>

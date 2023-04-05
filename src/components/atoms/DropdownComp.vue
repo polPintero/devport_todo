@@ -123,7 +123,7 @@ export default {
       text-transform: capitalize;
 
       &:hover {
-        background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+        background-image: var(--bg-primary);
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent
