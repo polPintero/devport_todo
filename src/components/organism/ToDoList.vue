@@ -11,7 +11,7 @@
             <span class="todos__user">{{ listUsersById[userId].name }}</span>
             <div class="todos__item">
                 <span v-if="todoRow.length === 0">No data</span>
-                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id" @click="test(todo)">
+                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id" @click="settofavorite(todo)">
                     {{ todo.title }}
                     <span class="todos__item__title--icon">
                         <FavoriteIcon v-model="todo.favorite"></FavoriteIcon>
@@ -25,6 +25,7 @@
 <script>
 import DropdownComp from '@/components/atoms/DropdownComp.vue'
 import FavoriteIcon from '@/components/atoms/icons/FavoriteIcon.vue'
+import getDataFromLocaleStore from '@/utils/getDataFromLocaleStore.js'
 
 export default {
     name: 'ToDoList',
@@ -70,8 +71,18 @@ export default {
         }
     },
     methods: {
-        test (e) {
-            console.log(e)
+        settofavorite (todo) {
+            const data = getDataFromLocaleStore()
+            if (todo.favorite) {
+                data.push(todo.id)
+            } else {
+                const index = data.indexOf(todo.id)
+                if (index !== -1) data.splice(index, 1);
+            }
+            this.saveDataToLocalStore(data)
+        },
+        saveDataToLocalStore (data) {
+            window.localStorage.setItem('favorites', JSON.stringify(data))
         },
         createByUserList () {
             this.listToDoByUserId()

@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import api from '@/api.js'
+import getDataFromLocaleStore from '@/utils/getDataFromLocaleStore.js'
 
 export default createStore({
   state: {
@@ -25,7 +26,9 @@ export default createStore({
     },
     setToDos(state, payload){
       state.todos = payload
+      const favorites = getDataFromLocaleStore()
       payload.forEach(todo => {
+        if(favorites.includes(todo.id)) todo.favorite = true
         if (!state.listToDoByUserId[todo.userId]) state.listToDoByUserId[todo.userId] = []
         state.listToDoByUserId[todo.userId].push(todo)
         
