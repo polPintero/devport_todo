@@ -41,7 +41,7 @@ body {
   display: flex;
   height: 100%;
   width: min(100%, 1020px);
-  margin: auto;
+  margin: var(--gap-double) auto;
   padding: 0 var(--gap-double);
 }
 </style>

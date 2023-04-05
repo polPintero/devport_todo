@@ -92,7 +92,7 @@ export default {
             template.id = maxId + 1
 
             this.$store.commit('addNewToDo', template)
-            function getMaxIdTodo(arr){
+            function getMaxIdTodo (arr) {
                 return Math.max(...arr.map(i => i.id))
             }
         },
@@ -187,11 +187,22 @@ export default {
         position: sticky;
         top: 0px;
         z-index: 1;
+
+        .input-comp {
+            align-self: center;
+        }
     }
 
     &__by-user {
         .dropdown__content__name {
             white-space: nowrap;
+        }
+    }
+
+    &__by-status {
+        .dropdown__content {
+            right: 0;
+            left: unset;
         }
     }
 }

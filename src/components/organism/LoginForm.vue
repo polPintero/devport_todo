@@ -1,10 +1,12 @@
 <template>
-  <form class="login-form" @submit.prevent>
-    <h4 class="login-form__title">Login</h4>
-    <InputComp label="username" v-model="nameUser" />
-    <InputNumber label="phone" v-model="phone" />
-    <ButtonComp label="login" @click="$emit('autorizaition')" />
-  </form>
+  <div class="login-form--wrap">
+    <form class="login-form" @submit.prevent>
+      <h4 class="login-form__title">Login</h4>
+      <InputComp label="username" v-model="nameUser" />
+      <InputNumber label="phone" v-model="phone" />
+      <ButtonComp label="login" @click="$emit('autorizaition')" />
+    </form>
+  </div>
 </template>
 
 <script>
@@ -49,6 +51,15 @@ export default {
 </script>
 
 <style lang="scss">
+.login-form--wrap {
+  max-width: 400px;
+  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+  margin: 30px auto;
+  border-radius: 10px;
+  transition: all .2s;
+  box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -56,6 +67,10 @@ export default {
   align-items: center;
   gap: calc(var(--gap) * 3);
   padding: calc(var(--gap) * 3);
+  background: var( --bg-main);
+  transform: scale(0.99);
+  border-radius: 10px;
+
 
   &__title {
     text-align: center;
