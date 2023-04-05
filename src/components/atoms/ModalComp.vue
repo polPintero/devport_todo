@@ -46,7 +46,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--overlay-color);
   display: flex;
   transition: opacity 0.3s ease;
 }
@@ -57,10 +57,8 @@ export default {
   padding: var(--gap-double);
   border-radius: 2px;
   transition: all 0.3s ease;
-  // background: rgba(31, 41, 61);
-  // box-shadow: 1px solid rgba(109, 158, 255, .1);
-  background: linear-gradient(to top, #00154c, #12376e, #23487f);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  background: var(--bg-secondary);
+  box-shadow: 0 15px 30px var(--overlay-color);
 }
 
 .modal-header h3 {

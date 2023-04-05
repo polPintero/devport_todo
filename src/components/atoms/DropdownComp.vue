@@ -86,8 +86,8 @@ export default {
     cursor: pointer;
     border: 1px solid rgba(109, 158, 255, .1);
     border-radius: 8px;
-    background: linear-gradient(to top, #00154c, #12376e, #23487f);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    background: var(--bg-secondary);
+    box-shadow: 0 15px 30px var(--overlay-color);
   }
 
   &__wrap-btn {
@@ -112,9 +112,8 @@ export default {
     padding-left: 0;
     left: 0;
     border-radius: 8px;
-    background: linear-gradient(to top, #00154c, #12376e, #23487f);
-    // background: #1F2937;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    background: var(--bg-secondary);
+    box-shadow: 0 15px 30px var(--overlay-color);
 
 
     &__name {

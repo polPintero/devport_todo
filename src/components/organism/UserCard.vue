@@ -55,9 +55,9 @@ export default {
     max-width: 400px;
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
     margin: 30px auto;
-    border-radius: 10px;
+    border-radius: var(--radius-main);
     transition: all .2s;
-    box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px 0px 0px #5f5e5e;
+    box-shadow: var(--shadow-main), var(--shadow-main-inset);
 
     &:hover {
         box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
@@ -73,7 +73,7 @@ export default {
     flex-direction: column;
     gap: 20px;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: var(--radius-main);
     transition: all .2s;
     background: var( --bg-main);
     text-align: center;

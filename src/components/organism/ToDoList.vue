@@ -126,8 +126,7 @@ export default {
     grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
     width: 100%;
     gap: var(--gap);
-    box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
-        inset 0px 0px 0px #0e0e0e, inset 0px 0px 0px #5f5e5e;
+    box-shadow: var(--shadow-main), var(--shadow-main-inset);
     margin-block-start: var(--gap-double);
 
     &__row {

@@ -47,7 +47,7 @@ export default {
   .label {
     position: absolute;
     top: 50%;
-    left: 10px;
+    left: var(--gap);
     transition: transform ease 0.2s;
     transform: translate(0%, -50%);
     font-size: 0.75em;

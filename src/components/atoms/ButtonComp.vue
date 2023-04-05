@@ -22,7 +22,7 @@ export default {
 .btn-comp {
   background-color: transparent;
   color: inherit;
-  padding: 10px 20px;
+  padding: var(--gap) var(--gap-double);
   font-size: 1rem;
   border-radius: 5px;
   text-transform: capitalize;
@@ -30,7 +30,7 @@ export default {
   outline: none;
   cursor: pointer;
   transition: box-shadow ease 0.1s;
-  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+  box-shadow: var(--shadow-main),
     inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
 
   &:active {

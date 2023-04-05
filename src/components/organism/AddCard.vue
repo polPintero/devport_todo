@@ -56,7 +56,7 @@ export default {
          display: flex;
          flex-direction: column;
          gap: var(--gap-double);
-         border-radius: 10px;
+         border-radius: var(--radius-main);
      }
 
      .modal-body {

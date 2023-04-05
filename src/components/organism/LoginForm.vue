@@ -55,7 +55,7 @@ export default {
   max-width: 400px;
   background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
   margin: 30px auto;
-  border-radius: 10px;
+  border-radius: var(--radius-main);
   transition: all .2s;
   box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
 }
@@ -69,7 +69,7 @@ export default {
   padding: calc(var(--gap) * 3);
   background: var( --bg-main);
   transform: scale(0.99);
-  border-radius: 10px;
+  border-radius: var(--radius-main);
 
 
   &__title {
