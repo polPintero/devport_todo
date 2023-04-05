@@ -1,6 +1,5 @@
 <template>
     <div class="todos__filters">
-        <!-- <FavoriteIcon ></FavoriteIcon> -->
         <DropdownComp class="todos__by-user" :list="byUserList" label="By User" default-value="all" v-model="byUser" />
         <InputComp label="search by title" v-model="byTitle" />
         <DropdownComp class="todos__by-status" :list="statusList" label="By status" default-value="all"
@@ -9,19 +8,20 @@
 
     <section class="todos">
         <div class="todos__row" v-for="(todoRow, userId) in currentViewList" :key="userId">
-            <PlusIcon /> 
+            <PlusIcon @click="openModal(userId)" />
             <span class="todos__user">{{ listUsersById[userId].name }}</span>
             <div class="todos__item">
                 <span v-if="todoRow.length === 0">No data</span>
-                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id" @click="settofavorite(todo)">
+                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id">
                     {{ todo.title }}
                     <span class="todos__item__title--icon">
-                        <FavoriteIcon v-model="todo.favorite" />
+                        <FavoriteIcon v-model="todo.favorite" @click="settofavorite(todo)" />
                     </span>
                 </span>
             </div>
         </div>
     </section>
+    <AddCard v-model="showModal" :user-name="currentUser.name" @add-todo="addTodo" />
 </template>
 
 <script>
@@ -30,17 +30,20 @@ import FavoriteIcon from '@/components/atoms/icons/FavoriteIcon.vue'
 import InputComp from '@/components/atoms/InputComp.vue'
 import getDataFromLocaleStore from '@/utils/getDataFromLocaleStore.js'
 import PlusIcon from '@/components/atoms/icons/PlusIcon.vue'
+import AddCard from '@/components/organism/AddCard.vue'
 
 export default {
     name: 'ToDoList',
-    components: { DropdownComp, FavoriteIcon, InputComp, PlusIcon },
+    components: { DropdownComp, FavoriteIcon, InputComp, PlusIcon, AddCard },
     data () {
         return {
             todos: this.$store.state.todos,
             byUser: null,
             byStatus: null,
             statusList: { completed: 'completed', uncompleted: 'uncompleted', favorites: 'favorites' },
-            byTitle: ''
+            byTitle: '',
+            showModal: false,
+            currentUser: ''
         }
     },
     computed: {
@@ -62,7 +65,7 @@ export default {
             const todoCopy = Object.assign({}, listToDoByUserId)
             let result = {}
             byUser === null ? result = todoCopy : result[byUser] = todoCopy[byUser]
-            
+
             Object.keys(result).forEach(id => {
                 const row = result[id]
                 result[id] = row.filter(todoItem => {
@@ -77,6 +80,26 @@ export default {
         }
     },
     methods: {
+        addTodo (ev) {
+            const template = {
+                completed: false,
+                favorite: false,
+                id: null,
+                title: ev.title,
+                userId: this.currentUser.id
+            }
+            const maxId = getMaxIdTodo(this.todos)
+            template.id = maxId + 1
+
+            this.$store.commit('addNewToDo', template)
+            function getMaxIdTodo(arr){
+                return Math.max(...arr.map(i => i.id))
+            }
+        },
+        openModal (userId) {
+            this.currentUser = this.listUsersById[userId]
+            this.showModal = true
+        },
         settofavorite (todo) {
             const data = getDataFromLocaleStore()
             if (todo.favorite) {

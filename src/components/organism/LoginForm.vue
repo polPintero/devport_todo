@@ -19,7 +19,7 @@ export default {
     InputNumber,
     ButtonComp
   },
-  emits: ['update:phoneNumber', 'update:userName'],
+  emits: ['update:phoneNumber', 'update:userName', 'autorizaition'],
   props: {
     phoneNumber: {
       type: [String, Number],

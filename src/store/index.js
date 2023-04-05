@@ -33,6 +33,10 @@ export default createStore({
         state.listToDoByUserId[todo.userId].push(todo)
         
       });
+    },
+    addNewToDo(state, payload){
+      state.todos.push(payload)
+      state.listToDoByUserId[payload.userId].push(payload)
     }
   },
   actions: {
