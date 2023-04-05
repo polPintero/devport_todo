@@ -87,7 +87,6 @@ export default {
     border: 1px solid rgba(109, 158, 255, .1);
     border-radius: 8px;
     background: linear-gradient(to top, #00154c, #12376e, #23487f);
-    // background: #1F2937;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
   }
 
