@@ -1,23 +1,25 @@
 <template>
-    <modal-comp :show="modelValue" @close="closeModal">
+    <modal-comp :show="modelValue" @close="closeModal" class="add-card">
         <template #header>
-            <span>add ToDo for {{ userName }}</span>
+            <span>Add ToDo for {{ userName }}</span>
         </template>
         <template #body>
-
+            <InputComp label="input title todo" v-model="todoTitle"></InputComp>
         </template>
         <template #footer>
-            <!-- <button-comp label="Ok" @click="closeModalWindow"></button-comp> -->
+            <ButtonComp label="add todo" @click="addTodo" :disabled="!todoTitle"/>
         </template>
     </modal-comp>
 </template>
 
 <script>
-import ModalComp from '../atoms/ModalComp.vue'
+import ModalComp from '@/components/atoms/ModalComp.vue'
+import InputComp from '@/components/atoms/InputComp.vue'
+import ButtonComp from '@/components/atoms/ButtonComp.vue'
 
 export default {
     name: 'AddCard',
-    components: { ModalComp },
+    components: { ModalComp, InputComp, ButtonComp },
     emits: ['update:modelValue'],
     props: {
         modelValue: {
@@ -29,19 +31,43 @@ export default {
             default: ''
         }
     },
-
-    methods: {
-        closeModal () {
-            this.$emit('update:modelValue', false)
+    data () {
+        return {
+            todoTitle: ''
         }
     },
-    watch: {
-        modelValue (e) {
-            console.log(e)
-        }
-    }
 
+    methods: {
+        addTodo () {
+            this.$emit('addTodo', { title: this.todoTitle })
+            this.closeModal()
+        },
+        closeModal () {
+            this.$emit('update:modelValue', false)
+            this.todoTitle = ''
+        }
+    },
 }
 </script>
 
-<style></style>
+<style lang="scss"> .add-card {
+     .modal-container {
+         display: flex;
+         flex-direction: column;
+         gap: var(--gap-double);
+         border-radius: 10px;
+     }
+
+     .modal-body {
+         input {
+             width: 100%;
+             box-sizing: border-box;
+         }
+     }
+
+     .modal-footer {
+         display: flex;
+         justify-content: flex-end;
+     }
+ }
+</style>

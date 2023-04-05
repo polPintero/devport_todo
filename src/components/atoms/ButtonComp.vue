@@ -1,5 +1,5 @@
 <template>
-  <button class="btn-comp">{{ label }}</button>
+  <button class="btn-comp" :disabled="disabled">{{ label }} </button>
 </template>
 
 <script>
@@ -9,6 +9,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -32,6 +36,9 @@ export default {
   &:active {
     box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 3px 3px 4px #0e0e0e,
       inset -3px -3px 4px #5f5e5e;
+  }
+  &:disabled{
+    pointer-events: none;
   }
 }
 </style>
