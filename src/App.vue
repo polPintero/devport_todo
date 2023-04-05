@@ -11,14 +11,13 @@ export default {
 
 <style lang="scss">
 html {
-  background: #212121;
+  background: var( --bg-main);
   color: #ffff;
   font-size: 18px;
   font-family: Montserrat, sans-serif;
 }
 
 body {
-  min-width: 100vw;
   min-height: 100vh;
   margin: 0;
   display: flex;
@@ -27,9 +26,8 @@ body {
 #app {
   display: flex;
   height: 100%;
-  width: 100%;
-
-
-
+  width: min(100%, 1020px);
+  margin: auto;
+  padding: 0 var(--gap-double);
 }
 </style>

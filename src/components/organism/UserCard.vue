@@ -30,9 +30,6 @@ export default {
             user: this.$store.state.user,
         }
     },
-    created () {
-        console.log(this.user)
-    },
     methods: {
         getAdress () {
             const a = this.user.address
@@ -78,7 +75,7 @@ export default {
     padding: 30px;
     border-radius: 10px;
     transition: all .2s;
-    background: #212121;
+    background: var( --bg-main);
     text-align: center;
 
     &__name {

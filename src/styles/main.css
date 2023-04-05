@@ -1,4 +1,6 @@
 :root {
     --gap: 10px;
     --gap-double: calc(var(--gap) * 2);
+
+    --bg-main: #212121;
 }
