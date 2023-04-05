@@ -4,10 +4,10 @@
             <span>Add ToDo for {{ userName }}</span>
         </template>
         <template #body>
-            <InputComp label="input title todo" v-model="todoTitle"></InputComp>
+            <InputComp label="input title todo" v-model.trim="todoTitle" @keyup.enter="addTodo"></InputComp>
         </template>
         <template #footer>
-            <ButtonComp label="add todo" @click="addTodo" :disabled="!todoTitle"/>
+            <ButtonComp label="add todo" @click="addTodo" :disabled="!todoTitle" />
         </template>
     </modal-comp>
 </template>
@@ -39,6 +39,7 @@ export default {
 
     methods: {
         addTodo () {
+            if (!this.todoTitle) return
             this.$emit('addTodo', { title: this.todoTitle })
             this.closeModal()
         },
