@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    --gap: 10px;
+    --gap-double: calc(var(--gap) * 2);
+
+    --bg-main: #212121;
+    --bg-secondary: linear-gradient(to top, #00154c, #12376e, #23487f);
+
+    --overlay-color: rgba(0, 0, 0, 0.5);
+
+    --shadow-main: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%);
+    --shadow-main-inset: inset 0px 0px 0px #0e0e0e, inset 0px 0px 0px #5f5e5e;
+
+    --radius-main: 10px;
+
+
+    background: var(--bg-main);
+    color: #ffff;
+    font-size: 18px;
+    font-family: Montserrat, sans-serif;
+
+    @media(max-width: 520px) {
+        font-size: 16px;
+        --gap: 8px;
+    }
+}
+
+html::-webkit-scrollbar {
+    width: 6px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    -webkit-border-radius: 7px;
+    background-color: #485c63;
+}
+
+html::-webkit-scrollbar-corner {
+    background-color: transparent;
+}

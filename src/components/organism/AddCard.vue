@@ -62,7 +62,6 @@ export default {
      .modal-body {
          input {
              width: 100%;
-             box-sizing: border-box;
          }
      }
 

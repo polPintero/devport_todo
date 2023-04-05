@@ -145,11 +145,6 @@ export default {
         }
     }
 
-    &__user {
-        display: flex;
-        align-items: center;
-    }
-
     &__item {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -189,6 +184,28 @@ export default {
 
         .input-comp {
             align-self: center;
+            margin: 0 var(--gap);
+        }
+
+        @media(max-width: 520px) {
+            flex-direction: column;
+
+            .dropdown {
+                margin: var(--gap-double) 0;
+
+                .dropdown__wrap-btn {
+                    margin-block-start: var(--gap);
+                }
+            }
+
+            .todos__by-user {
+                order: 1;
+            }
+
+            .todos__by-status .dropdown__content {
+                left: 0;
+                right: unset;
+            }
         }
     }
 
@@ -204,5 +221,4 @@ export default {
             left: unset;
         }
     }
-}
-</style>
+}</style>

@@ -72,8 +72,6 @@ export default {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  // background: var(--bg-secondary);
-  // background: rgba(31, 41, 61);
 
   &__btn {
     width: 100%;
@@ -114,6 +112,7 @@ export default {
     border-radius: 8px;
     background: var(--bg-secondary);
     box-shadow: 0 15px 30px var(--overlay-color);
+    z-index: 1;
 
 
     &__name {
