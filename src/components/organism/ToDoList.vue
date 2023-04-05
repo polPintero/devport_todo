@@ -108,11 +108,19 @@ export default {
     margin-block-start: var(--gap-double);
 
     &__row {
+        position: relative;
         display: grid;
         grid-template-columns: min(150px, 25%) 1fr;
         gap: calc(var(--gap-double) * 2);
         border-bottom: 1px solid;
         padding: var(--gap-double);
+
+        .plus-icon {
+            position: absolute;
+            top: var(--gap);
+            right: var(--gap);
+            cursor: pointer;
+        }
     }
 
     &__user {
