@@ -11,10 +11,10 @@
             <span class="todos__user">{{ listUsersById[userId].name }}</span>
             <div class="todos__item">
                 <span v-if="todoRow.length === 0">No data</span>
-                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id">
+                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id" @click="test(todo)">
                     {{ todo.title }}
                     <span class="todos__item__title--icon">
-                        <FavoriteIcon></FavoriteIcon>
+                        <FavoriteIcon v-model="todo.favorite"></FavoriteIcon>
                     </span>
                 </span>
             </div>
@@ -53,7 +53,7 @@ export default {
         },
         currentViewList () {
             const { byUser, byStatus, listToDoByUserId, statusList } = this
-            const todoCopy = JSON.parse(JSON.stringify(listToDoByUserId))
+            const todoCopy = Object.assign({}, listToDoByUserId)
             let result = {}
             byUser === null ? result = todoCopy : result[byUser] = todoCopy[byUser]
             if (byStatus === null) return result
@@ -63,13 +63,16 @@ export default {
                 result[id] = row.filter(todoItem => {
                     if (byStatus === statusList.completed) return todoItem.completed
                     if (byStatus === statusList.uncompleted) return !todoItem.completed
-                    if (byStatus === statusList.favorites) return todoItem.favorites
+                    if (byStatus === statusList.favorites) return todoItem.favorite
                 })
             })
             return result
         }
     },
     methods: {
+        test (e) {
+            console.log(e)
+        },
         createByUserList () {
             this.listToDoByUserId()
         }
@@ -89,7 +92,7 @@ export default {
 
     &__row {
         display: grid;
-        grid-template-columns: min(100px, 20%) 1fr;
+        grid-template-columns: min(150px, 25%) 1fr;
         gap: calc(var(--gap-double) * 2);
         border-bottom: 1px solid;
         padding: var(--gap-double);
@@ -103,7 +106,7 @@ export default {
     &__item {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: calc(var(--gap-double) * 2);
+        gap: calc(var(--gap-double) * 1);
 
         &__title {
             display: -webkit-box;
@@ -112,18 +115,18 @@ export default {
             overflow: hidden;
             text-overflow: ellipsis;
             position: relative;
-            padding-right: 10px;
+            padding: 5px 5px 0 25px;
 
             &--icon {
                 position: absolute;
-                top: 0;
-                right: 0;
                 display: none;
+                top: 0;
+                left: 2px;
             }
 
             &:hover {
                 .todos__item__title--icon {
-                    display: block;
+                    display: inline-block;
                 }
             }
         }
@@ -135,6 +138,7 @@ export default {
         background: var(--bg-main);
         position: sticky;
         top: 0px;
+        z-index: 1;
     }
 
     &__by-user {

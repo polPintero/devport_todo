@@ -39,7 +39,7 @@ export default {
 .fav {
     position: relative;
     height: max-content;
-    font-size: 6px;
+    font-size: 8px;
     transition: 100ms;
     cursor: pointer;
 
