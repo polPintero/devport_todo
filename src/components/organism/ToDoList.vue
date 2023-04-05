@@ -1,16 +1,22 @@
 <template>
     <div class="todos__filters">
+        <!-- <FavoriteIcon ></FavoriteIcon> -->
         <DropdownComp class="todos__by-user" :list="byUserList" label="By User" default-value="all" v-model="byUser" />
-        <DropdownComp class="todos__by-status" :list="statusList" label="By status" default-value="all" v-model="byStatus" />
+        <DropdownComp class="todos__by-status" :list="statusList" label="By status" default-value="all"
+            v-model="byStatus" />
     </div>
 
     <section class="todos">
         <div class="todos__row" v-for="(todoRow, userId) in currentViewList" :key="userId">
             <span class="todos__user">{{ listUsersById[userId].name }}</span>
             <div class="todos__item">
-                <span class="todos__item__title" v-for="todo in todoRow" :key="todo.id">{{
-                    todo.title
-                }}</span>
+                <span v-if="todoRow.length === 0">No data</span>
+                <span v-else class="todos__item__title" v-for="todo in todoRow" :key="todo.id">
+                    {{ todo.title }}
+                    <span class="todos__item__title--icon">
+                        <FavoriteIcon></FavoriteIcon>
+                    </span>
+                </span>
             </div>
         </div>
     </section>
@@ -18,20 +24,18 @@
 
 <script>
 import DropdownComp from '@/components/atoms/DropdownComp.vue'
+import FavoriteIcon from '@/components/atoms/icons/FavoriteIcon.vue'
 
 export default {
     name: 'ToDoList',
-    components: { DropdownComp },
+    components: { DropdownComp, FavoriteIcon },
     data () {
         return {
             todos: this.$store.state.todos,
             byUser: null,
-            statusList: { completed: 'completed', uncompleted: 'uncompleted', favorites: 'favorites' },
-            byStatus: null
+            byStatus: null,
+            statusList: { completed: 'completed', uncompleted: 'uncompleted', favorites: 'favorites' }
         }
-    },
-    created () {
-        console.log(this.listToDoByUserId[1][0])
     },
     computed: {
         listToDoByUserId () {
@@ -53,7 +57,7 @@ export default {
             let result = {}
             byUser === null ? result = todoCopy : result[byUser] = todoCopy[byUser]
             if (byStatus === null) return result
-            console.log(byStatus)
+
             Object.keys(result).forEach(id => {
                 const row = result[id]
                 result[id] = row.filter(todoItem => {
@@ -63,11 +67,6 @@ export default {
                 })
             })
             return result
-        }
-    },
-    watch: {
-        byStatus (e) {
-            console.log(e)
         }
     },
     methods: {
@@ -112,12 +111,30 @@ export default {
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            position: relative;
+            padding-right: 10px;
+
+            &--icon {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: none;
+            }
+
+            &:hover {
+                .todos__item__title--icon {
+                    display: block;
+                }
+            }
         }
     }
 
     &__filters {
         display: flex;
         justify-content: space-between;
+        background: var(--bg-main);
+        position: sticky;
+        top: 0px;
     }
 
     &__by-user {
