@@ -4,7 +4,13 @@
       <h4 class="login-form__title">Login</h4>
       <InputComp label="username" v-model="nameUser" />
       <InputNumber label="phone" v-model="phone" />
-      <ButtonComp label="login" @click="$emit('autorizaition')" />
+      <ButtonComp label="login" @click="$emit('autorizaition')">
+        <template #after v-if="isLoading">
+          <span class="login-form__loader">
+            <LoaderIcon></LoaderIcon>
+          </span>
+        </template>
+      </ButtonComp>
     </form>
   </div>
 </template>
@@ -13,13 +19,15 @@
 import InputComp from '@/components/atoms/InputComp.vue'
 import InputNumber from '@/components/atoms/InputNumber.vue'
 import ButtonComp from '@/components/atoms/ButtonComp.vue'
+import LoaderIcon from '../atoms/icons/LoaderIcon.vue'
 
 export default {
   name: 'LoginForm',
   components: {
     InputComp,
     InputNumber,
-    ButtonComp
+    ButtonComp,
+    LoaderIcon
   },
   emits: ['update:phoneNumber', 'update:userName', 'autorizaition'],
   props: {
@@ -30,6 +38,10 @@ export default {
     userName: {
       type: String,
       default: ''
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -67,7 +79,7 @@ export default {
   align-items: center;
   gap: calc(var(--gap) * 3);
   padding: calc(var(--gap) * 3);
-  background: var( --bg-main);
+  background: var(--bg-main);
   transform: scale(0.99);
   border-radius: var(--radius-main);
 
@@ -77,6 +89,22 @@ export default {
     font-weight: 700;
     font-size: 2em;
     margin: 0;
+  }
+
+  &__loader {
+    svg {
+      animation: rotating 1s linear infinite;
+    }
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
   }
 }
 </style>
